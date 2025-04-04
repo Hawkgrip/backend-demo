@@ -11,10 +11,20 @@ import { AdminModule } from './admin/admin.module';
 import { ProductController } from './product/product.controller';
 import { ProductService } from './product/product.service';
 import { ProductModule } from './product/product.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [AuthModule, UserModule, AdminModule, ProductModule],
-  controllers: [AppController, UserController, AdminController, ProductController],
-  providers: [AppService, UserService, AdminService, ProductService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost', // Host name/address from the image
+      port: 5432, // Default PostgreSQL port
+      username: 'Akash', // Username from the image
+      password: '4682', // Password you provided
+      database: 'demo_BE', // Maintenance database from the image
+      entities: [], // Add your entities here
+      synchronize: true, // Set to false in production for safety
+    }),
+  ],
 })
 export class AppModule {}
